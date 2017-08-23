@@ -1,4 +1,4 @@
-const Config = require('../server/configs/config');
+const Config = require('../configs/config');
 
 module.exports = (app) => {
     app.listen(Config.Server.port, onListen);

@@ -4,7 +4,6 @@ const OptionsUpdate = {new: true};
 
 module.exports = {
     add: add,
-    edit: edit,
     remove: remove,
     getAll: getAll
 };
@@ -31,7 +30,7 @@ function _onAddDeliveries(res) {
 
 // remove ---
 
-function removeAll(req, res) {
+function remove(req, res) {
     const NewDeliveries = {
         $set: {
             removed: true

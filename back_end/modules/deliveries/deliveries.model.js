@@ -1,4 +1,4 @@
 const DBService = require('../../../server/services/db/db.service');
-const Config = require('../../configs/config');
+const Config = require('../../../server/configs/config');
 
 module.exports = DBService.Model.get(Config.name, 'Deliveries');
