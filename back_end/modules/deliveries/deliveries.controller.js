@@ -31,7 +31,7 @@ function _onAddDeliveries(res) {
 
 // remove ---
 
-function remove(req, res) {
+function removeAll(req, res) {
     const NewDeliveries = {
         $set: {
             removed: true
