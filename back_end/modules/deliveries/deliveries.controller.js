@@ -1,5 +1,5 @@
 const APIService = require('../../../server/services/api/api.service');
-const RealEstateModel = require('./deliveries.model.js');
+const DeliveriesModel = require('./deliveries.model.js');
 const OptionsUpdate = {new: true};
 
 module.exports = {
@@ -21,10 +21,10 @@ function add(req, res) {
 function _onAddDeliveries(res) {
     return function (ErrorSaveDeliveries, DeliveriesSaved) {
         if (ErrorSaveDeliveries) {
-            return APIService.error(res, 406, 'Entrega não foi adicionada', ErrorSaveDeliveries);
+            return APIService.error(res, 400, 'Entrega não foi adicionada', ErrorSaveDeliveries);
         }
 
-        return APIService.success(res, 407, 'Entrega adicionada com sucesso', DeliveriesSaved);
+        return APIService.success(res, 500, 'Entrega adicionada com sucesso', DeliveriesSaved);
     };
 }
 
@@ -46,10 +46,10 @@ function remove(req, res) {
 function _onRemoveDeliveries(res) {
     return function (ErrorUpdateDeliveries, DeliveriesRemoved) {
         if (ErrorUpdateDeliveries) {
-            return APIService.error(res, 410, 'Erro ao remover entrega', ErrorUpdateDeliveries);
+            return APIService.error(res, 400, 'Erro ao remover entrega', ErrorUpdateDeliveries);
         }
 
-        return APIService.success(res, 411, 'Entrega removida com sucesso', DeliveriesRemoved);
+        return APIService.success(res, 500, 'Entrega removida com sucesso', DeliveriesRemoved);
     };
 }
 
@@ -60,7 +60,7 @@ function getAll(req, res) {
         removed: false
     };
 
-    RealEstateModel
+    DeliveriesModel
         .find(QueryGetAllDeliveries)
         .lean()
         .exec(_onGetAllDeliveries(res));
@@ -69,9 +69,9 @@ function getAll(req, res) {
 function _onGetAllDeliveries(res) {
     return function (ErrorGetAllDeliveries, DeliveriesFounded) {
         if (ErrorGetAllDeliveries) {
-            return APIService.error(res, 412, 'Entregas não puderam ser obtidas', ErrorGetAllDeliveries);
+            return APIService.error(res, 400, 'Entregas não puderam ser obtidas', ErrorGetAllDeliveries);
         }
 
-        return APIService.success(res, 413, 'Entregas obtidas com sucesso', DeliveriesFounded);
+        return APIService.success(res, 500, 'Entregas obtidas com sucesso', DeliveriesFounded);
     };
 }
