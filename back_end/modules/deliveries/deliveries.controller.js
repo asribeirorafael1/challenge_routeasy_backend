@@ -38,9 +38,13 @@ function remove(req, res) {
     };
 
     DeliveriesModel
-        .findByIdAndUpdate(req.params.deliveriesId, NewDeliveries, OptionsUpdate)
-        .lean()
+        .remove({})
         .exec(_onRemoveDeliveries(res));
+
+    // DeliveriesModel
+    //     .findByIdAndUpdate(req.params.deliveriesId, NewDeliveries, OptionsUpdate)
+    //     .lean()
+    //     .exec(_onRemoveDeliveries(res));
 }
 
 function _onRemoveDeliveries(res) {
@@ -49,7 +53,7 @@ function _onRemoveDeliveries(res) {
             return APIService.error(res, 400, 'Erro ao remover entrega', ErrorUpdateDeliveries);
         }
 
-        return APIService.success(res, 500, 'Entrega removida com sucesso', DeliveriesRemoved);
+        return APIService.success(res, 500, 'Entregas removidas com sucesso', DeliveriesRemoved);
     };
 }
 
